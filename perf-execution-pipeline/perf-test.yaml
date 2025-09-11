@@ -66,6 +66,7 @@ resources:
   repositories:
     - repository: performance-is
       type: github
+      endpoint: thunder-performance
       name: wso2/performance-is
       ref: thunder
 
