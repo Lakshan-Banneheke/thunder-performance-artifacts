@@ -67,7 +67,7 @@ resources:
       type: github
       endpoint: thunder-performance
       name: Lakshan-Banneheke/performance-is
-      ref: main
+      ref:  ${{parameters.PERFORMANCE_IS_THUNDER_BRANCH}}
 
 variables:
   - name: AZURE-KEYVAULT-NAME
@@ -100,17 +100,6 @@ jobs:
 #        inputs:
 #          versionSpec:  '${{ parameters.python_version }}'
 #        displayName: 'Use Python ${{ parameters.python_version }}'
-
-      - task: Bash@3
-        displayName: Checkout Performance IS Thunder branch
-        inputs:
-          targetType: 'inline'
-          script: |
-            cd ./performance-is/
-            echo "Switching Performance IS repo branch to $BRANCH"
-            git checkout $BRANCH
-        env:
-          BRANCH: ${{parameters.PERFORMANCE_IS_THUNDER_BRANCH}}
 
       - task: AzureCLI@2
         displayName: Initiate performance test run
