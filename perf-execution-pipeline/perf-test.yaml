@@ -67,7 +67,7 @@ resources:
       type: github
       endpoint: thunder-performance
       name: Lakshan-Banneheke/performance-is
-      ref: thunder
+      ref: main
 
 variables:
   - name: AZURE-KEYVAULT-NAME
