@@ -73,7 +73,7 @@ variables:
   - name: AZURE-KEYVAULT-NAME
     value: 'kv-thunder-perf-eus2-01'
   - name: AZURE-KEYVAULT-SERVICE-CONNECTION
-    value: 'thunder-keyvault'
+    value: 'thunder-perf-ad-app'
 
 jobs:
   - job: thunder_performance_test
@@ -133,8 +133,6 @@ jobs:
           DATABASE_PASSWORD: $(DB-SERVER-ADMIN-PASSWORD) # TODO check if we can remove this
           DATABASE_HOST_NAME: 'wso2-thunder.postgres.database.azure.com' # TODO check if we can remove this
           THUNDER_HOST_NAME: 'thunder.local'
-          PERFORMANCE_TEST_USER_NAME: $(PERF-TEST-USER-USERNAME)
-          PERFORMANCE_TEST_USER_PASSWORD: $(PERF-TEST-USER-PASSWORD)
           POPULATE_TEST_DATA: ${{parameters.POPULATE_TEST_DATA}}
           TENANTS: ${{parameters.TENANTS}}
           SP_PER_TENANT: ${{parameters.SP_PER_TENANT}}
