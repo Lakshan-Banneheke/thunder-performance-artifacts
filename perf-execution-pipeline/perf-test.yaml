@@ -112,11 +112,6 @@ jobs:
           POPULATE_TEST_DATA: ${{parameters.POPULATE_TEST_DATA}}
           RUN_MODE: ${{parameters.RUN_MODE}}
           CONCURRENT_USERS: ${{parameters.CONCURRENT_USERS}}
-          # Add Terraform authentication environment variables
-          ARM_CLIENT_ID: $(servicePrincipalId)
-          ARM_CLIENT_SECRET: $(servicePrincipalKey)
-          ARM_TENANT_ID: $(tenantId)
-          ARM_SUBSCRIPTION_ID: $(subscriptionId)
 
       - task: PublishPipelineArtifact@1
         displayName: Publish pipeline artifacts
