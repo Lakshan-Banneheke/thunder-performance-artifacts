@@ -25,18 +25,6 @@ parameters:
   displayName: Performance IS repo branch name
   type: string
   default: thunder
-- name: TENANTS
-  displayName: Number of tenants
-  type: number
-  default: 100
-- name: SP_PER_TENANT
-  displayName: Number of SPs per tenant
-  type: number
-  default: 10
-- name: USERS_PER_TENANT
-  displayName: Number of users per tenant
-  type: number
-  default: 1000
 - name: CONCURRENT_USERS
   displayName: Concurrent Users
   type: number
@@ -58,9 +46,9 @@ parameters:
   default: false
 - name: python_version
   displayName: Python Version
-  default: 3.9.23
+  default: 3.9
   values:
-  - 3.9.23
+  - 3.9
 
 resources:
   repositories:
@@ -119,16 +107,16 @@ jobs:
           GITHUB_USERNAME: $(gitUsername)
           BUILD_TYPE: $(Build.Reason)
           BUILD_PATH: $(Build.ArtifactStagingDirectory)
-          DATABASE_USER_NAME: $(DB-SERVER-ADMIN-USERNAME) # TODO check if we can remove this
-          DATABASE_PASSWORD: $(DB-SERVER-ADMIN-PASSWORD) # TODO check if we can remove this
           DATABASE_HOST_NAME: 'wso2-thunder.postgres.database.azure.com' # TODO check if we can remove this
           THUNDER_HOST_NAME: 'thunder.local'
           POPULATE_TEST_DATA: ${{parameters.POPULATE_TEST_DATA}}
-          TENANTS: ${{parameters.TENANTS}}
-          SP_PER_TENANT: ${{parameters.SP_PER_TENANT}}
-          USERS_PER_TENANT: ${{parameters.USERS_PER_TENANT}}
           RUN_MODE: ${{parameters.RUN_MODE}}
           CONCURRENT_USERS: ${{parameters.CONCURRENT_USERS}}
+          # Add Terraform authentication environment variables
+          ARM_CLIENT_ID: $(servicePrincipalId)
+          ARM_CLIENT_SECRET: $(servicePrincipalKey)
+          ARM_TENANT_ID: $(tenantId)
+          ARM_SUBSCRIPTION_ID: $(subscriptionId)
 
       - task: PublishPipelineArtifact@1
         displayName: Publish pipeline artifacts
