@@ -93,7 +93,7 @@ jobs:
       - task: AzureCLI@2
         displayName: Initiate performance test run
         inputs:
-          azureSubscription: thunder-perf-ad-app
+          azureSubscription: thunder-perf-ad-app-secret-cred
           scriptType: bash
           useGlobalConfig: true
           scriptLocation: scriptPath
@@ -150,7 +150,7 @@ jobs:
       - task: AzureCLI@2
         displayName: Force-Destroy Azure Resources
         inputs:
-          azureSubscription: thunder-perf-ad-app
+          azureSubscription: thunder-perf-ad-app-secret-cred
           scriptType: bash
           useGlobalConfig: true
           scriptLocation: scriptPath
