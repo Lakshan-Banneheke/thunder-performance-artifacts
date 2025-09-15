@@ -24,7 +24,7 @@ parameters:
 - name: PERFORMANCE_IS_THUNDER_BRANCH
   displayName: Performance IS repo branch name
   type: string
-  default: thunder
+  default: thunder-new
 - name: CONCURRENT_USERS
   displayName: Concurrent Users
   type: number
@@ -44,6 +44,10 @@ parameters:
   displayName: Populate test data
   type: string
   default: false
+- name: BASTION_NODE_IP
+  displayName: Bastion Node IP
+  type: string
+  default: "20.110.160.128"
 - name: python_version
   displayName: Python Version
   default: 3.9
@@ -112,6 +116,7 @@ jobs:
           POPULATE_TEST_DATA: ${{parameters.POPULATE_TEST_DATA}}
           RUN_MODE: ${{parameters.RUN_MODE}}
           CONCURRENT_USERS: ${{parameters.CONCURRENT_USERS}}
+          BASTION_NODE_IP: ${{parameters.BASTION_NODE_IP}}
 
       - task: PublishPipelineArtifact@1
         displayName: Publish pipeline artifacts
