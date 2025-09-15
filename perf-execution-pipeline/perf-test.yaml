@@ -25,10 +25,17 @@ parameters:
   displayName: Performance IS repo branch name
   type: string
   default: thunder-new
-- name: CONCURRENT_USERS
-  displayName: Concurrent Users
-  type: number
-  default: 200
+- name: CONCURRENCY
+  displayName: Concurrency
+  type: string
+  default: 50-50
+  values:
+    - 50-50
+    - 50-500
+    - 50-1000
+    - 50-3000
+    - 500-3000
+    - 1000-3000
 - name: BUILD_PURPOSE
   displayName: Perf-Test purpose
   type: string
@@ -115,7 +122,7 @@ jobs:
           THUNDER_HOST_NAME: 'thunder.local'
           POPULATE_TEST_DATA: ${{parameters.POPULATE_TEST_DATA}}
           RUN_MODE: ${{parameters.RUN_MODE}}
-          CONCURRENT_USERS: ${{parameters.CONCURRENT_USERS}}
+          CONCURRENCY: ${{parameters.CONCURRENCY}}
           BASTION_NODE_IP: ${{parameters.BASTION_NODE_IP}}
 
       - task: PublishPipelineArtifact@1
